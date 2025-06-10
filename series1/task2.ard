@@ -1,0 +1,12 @@
+\import Function.Meta
+\import Paths
+\import Paths.Meta
+\open Nat (*, +)
+
+\func +-assoc {n m k : Nat} : (n + m) + k = n + (m + k) => {?}
+
+\func +-comm {n m : Nat} : n + m = m + n => {?}
+
+\func rdistr {x y z : Nat} : (x + y) * z = x * z + y * z => {?}
+
+\func *-comm {n m : Nat} : n * m = m * n => {?}

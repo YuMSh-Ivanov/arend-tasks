@@ -1,0 +1,13 @@
+\import Arith.Nat
+\import Combinatorics.Factorial
+\import Data.Or
+\import Paths
+\open Nat (*)
+
+\func DivBy \alias \infix 5 ⋮ (a b : Nat) => \Sigma (c : Nat) (b * c = a)
+
+\func x-DivBy-6_x-divby-3 \alias x⋮6_x⋮3 {x : Nat} (p : x ⋮ 6) : x ⋮ 3 => {?}
+
+\func fac-x-DivBy-x \alias fac-x⋮x {x : Nat} : (x = 0) `Or` fac x ⋮ x => {?}
+
+\func DivBy-transitive \alias \infixr 9 ⋮∘ {x y z : Nat} (p : x ⋮ y) (q : y ⋮ z) : x ⋮ z => {?}

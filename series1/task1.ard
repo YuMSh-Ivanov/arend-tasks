@@ -1,0 +1,34 @@
+\import Algebra.Monoid (Monoid)
+\import Arith.Nat
+\import Data.Or
+\import Logic
+\import Paths
+\open Monoid (pow)
+
+\data \infix 4 Nat_<= (a b : Nat) \with
+  | 0, _ => Nat_zero<=_
+  | suc a, suc b => Nat_suc<=suc (a Nat_<= b)
+
+\func one<=three : 1 Nat_<= 3 => Nat_suc<=suc Nat_zero<=_
+
+{-
+  Explanation:
+  Nat_zero<=_ has type (0 Nat_<= ?),
+  so Nat_suc<=suc Nat_zero<=_ has type (1 Nat_<= suc ?)
+ -}
+
+\func Nat_id<=+ {a b : Nat} : a Nat_<= a Nat.+ b => {?}
+
+\func Nat_<=_+-left (c : Nat) {a b : Nat} (p : a Nat_<= b) : a Nat.+ c Nat_<= b Nat.+ c => {?}
+
+\func Nat_<=_* {a b c d : Nat} (a<=b : a Nat_<= b) (c<=d : c Nat_<= d) : a Nat.* c Nat_<= b Nat.* d => {?}
+
+\func Nat_<=-transitive \alias \infixr 9 Nat_<=∘ {a b c : Nat} (a<=b : a Nat_<= b) (b<=c : b Nat_<= c) : a Nat_<= c => {?}
+
+\func Nat_id<=pow2 {a : Nat} : a Nat_<= 2 `pow` a => {?}
+
+\func Nat_totality {a b : Nat} : a Nat_<= b || b Nat_<= a => {?}
+
+\func Nat_<=-dec {a b : Nat} (a<=b : a Nat_<= b) : a NatSemiring.< b `Or` (a = b) => {?}
+
+\func Nat_<=-leq {a b : Nat} (a<b-or-a=b : a NatSemiring.< b `Or` (a = b)) : a Nat_<= b => {?}
