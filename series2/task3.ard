@@ -1,0 +1,13 @@
+\import Arith.Nat
+\import Function.Meta
+\import Logic
+\import Logic.Meta
+\import Paths
+\import Paths.Meta
+\open Nat (*, +)
+
+\data Div2 (n : Nat)
+  | even (∃ (p : Nat) (2 * p = n))
+  | odd (∃ (p : Nat) (2 * p + 1 = n))
+  \where
+    \use \level isProp {n : Nat} (d1 d2 : Div2 n) : d1 = d2 => {?}

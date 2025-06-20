@@ -1,0 +1,19 @@
+\import Logic
+
+\data NatModulo (m : Nat) (m/=0 : m /= 0)
+  | nat-mod Nat
+  | nat-mod= {a b : Nat} (a Nat.mod m = b Nat.mod m) : nat-mod a = nat-mod b
+
+\func nat-mod_suc {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) : NatModulo m m/=0 \elim r
+  | nat-mod n => nat-mod (suc n)
+  | nat-mod= {a} {b} a_mod_m=b_mod_m i => {?}
+
+\func nat-mod_+nat {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (delta : Nat) : NatModulo m m/=0 => {?}
+
+\func nat-mod_+-IMPOSSIBLE {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (s : NatModulo m m/=0) : NatModulo m m/=0 \elim r, s
+  | nat-mod n1, nat-mod n2 => {?}
+  | nat-mod n1, nat-mod= {c} {d} c_mod_m=d_mod_m j => {?}
+  | nat-mod= {a} {b} a_mod_m=b_mod_m i, nat-mod n2 => {?}
+  | nat-mod= {a} {b} a_mod_m=b_mod_m i, nat-mod= {c} {d} c_mod_m=d_mod_m j => {?} -- Why is this branch impossible?
+
+\func nat-mod_+ {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (s : NatModulo m m/=0) : NatModulo m m/=0 => {?}
