@@ -1,0 +1,10 @@
+\import Arith.Nat
+\import Function.Meta
+\import Logic
+\import Paths
+\import Paths.Meta
+\open Nat (*)
+
+\func LinearSolution (a b : Nat) (a/=0 : a /= 0) => \Sigma (x : Nat) (a * x = b)
+  \where
+    \use \level isProp {a b : Nat} {a/=0 : a /= 0} (s1 s2 : LinearSolution a b a/=0) : s1 = s2 => {?}

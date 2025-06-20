@@ -1,0 +1,16 @@
+\import Arith.Fin
+\import Arith.Int
+\import Arith.Nat
+\import Logic
+\import Paths
+\import Relation.Equivalence
+
+\func NatModulo (m : Nat) (m/=0 : m /= 0) : \Type => {?}
+
+\func nat-mod_+ {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (s : NatModulo m m/=0) : NatModulo m m/=0 => {?}
+
+\func Rat : \Type => Quotient {\Sigma Int (d : Nat) (d /= 0)} (\lam (n1, d1, d1/=0) (n2, d2, d2/=0) => n1 IntRing.* d2 = n2 IntRing.* d1)
+
+\func \infixl 8 rat_* (p q : Rat) : Rat => {?}
+
+\func rat_*-assoc {p q r : Rat} : (p rat_* q) rat_* r = p rat_* (q rat_* r) => {?}

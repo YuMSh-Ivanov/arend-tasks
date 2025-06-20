@@ -1,0 +1,12 @@
+\import Arith.Fin
+\import Arith.Nat
+\import Logic
+
+\data NatModulo (m : Nat) (m/=0 : m /= 0)
+  | nat-mod Nat
+  | nat-mod= {a b : Nat} (a Nat.mod m = b Nat.mod m) : nat-mod a = nat-mod b
+  | nat-mod== {r s : NatModulo m m/=0} {p1 p2 : r = s} : p1 = p2
+  \where
+    \use \level isSet {m : Nat} {m/=0 : m /= 0} {r s : NatModulo m m/=0} {p1 p2 : r = s} : p1 = p2 => {?}
+
+\func nat-mod_+ {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (s : NatModulo m m/=0) : NatModulo m m/=0 => {?}

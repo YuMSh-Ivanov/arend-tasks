@@ -1,0 +1,24 @@
+\import Arith.Fin
+\import Arith.Nat
+\import Logic
+\import Paths
+
+\data NatModulo (m : Nat) (m/=0 : m /= 0)
+  | nat-mod Nat
+  | nat-mod= {a b : Nat} (a Nat.mod m = b Nat.mod m) : nat-mod a = nat-mod b
+
+\func nat-mod_suc {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) : NatModulo m m/=0 \elim m, r
+  | 0, _ => absurd (m/=0 idp)
+  | suc m, nat-mod n => nat-mod (suc n)
+  | suc m, nat-mod= {a} {b} a_mod_m=b_mod_m i => {?}
+
+\func nat-mod_+-IMPOSSIBLE {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (s : NatModulo m m/=0) : NatModulo m m/=0 \elim m, r, s
+  | 0, _, _ => absurd (m/=0 idp)
+  | suc m, nat-mod n1, nat-mod n2 => nat-mod (n1 Nat.+ n2)
+  | suc m, nat-mod n1, nat-mod= {c} {d} c_mod_m=d_mod_m j => {?}
+  | suc m, nat-mod= {a} {b} a_mod_m=b_mod_m i, nat-mod n2 => {?}
+  | suc m, nat-mod= {a} {b} a_mod_m=b_mod_m i, nat-mod= {c} {d} c_mod_m=d_mod_m j => {?} -- Why is this branch very difficult to prove?
+
+\func nat-mod_+nat {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (delta : Nat) : NatModulo m m/=0 => {?}
+
+\func nat-mod_+ {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (s : NatModulo m m/=0) : NatModulo m m/=0 => {?}

@@ -1,0 +1,11 @@
+\import Arith.Nat
+\import Logic
+\import Logic.Meta
+\import Paths
+\import Paths.Meta
+
+\func predRemoveTruncP {x : Nat} (t : ∃ (p : Nat) (suc p = x)) : \Sigma (p : Nat) (suc p = x) => {?}
+
+\func <-||->_/= {x y : Nat} (x<y||x>y : x NatSemiring.< y || x NatSemiring.> y) : x /= y => {?}
+
+\func isSqrRemoveTruncP {x : Nat} (t : ∃ (p : Nat) (p Nat.* p = x)) : \Sigma (p : Nat) (p Nat.* p = x) => {?}

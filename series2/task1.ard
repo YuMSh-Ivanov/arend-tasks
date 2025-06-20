@@ -1,0 +1,26 @@
+\func ChurchBool => \Pi (T : \Type) -> T -> T -> T
+
+\func true : ChurchBool => \lam _ x _ => x
+
+\func false : ChurchBool => \lam _ _ y => y
+
+\func and (x : ChurchBool) (y : ChurchBool) : ChurchBool => x ChurchBool (y ChurchBool true false) false
+
+\func ChurchNum => \Pi (T : \Type) -> (T -> T) -> T -> T
+
+\func pred (n : ChurchNum) : ChurchNum =>
+  \lam T f x => n ((T -> T) -> T) (\lam g h => h (g f)) (\lam u => x) (\lam u => u)
+
+\func sub (a : ChurchNum) (b : ChurchNum) => a ChurchNum pred b
+
+-- Leq
+
+\func is-zero (n : ChurchNum) : ChurchBool => n ChurchBool (\lam x => false) true
+
+\func leq (n : ChurchNum) (m : ChurchNum) : ChurchBool => is-zero (sub n m)
+
+-- Eq
+
+\func test-lp (A : \Type\lp) : \Type(\suc\lp) => A
+
+\func eq (n : ChurchNum) (m : ChurchNum) : ChurchBool => and (leq n m) (leq m n)

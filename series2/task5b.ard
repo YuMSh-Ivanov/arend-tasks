@@ -1,0 +1,9 @@
+\import Arith.Fin
+\import Arith.Nat
+\import Logic
+
+\truncated \data NatModulo (m : Nat) (m/=0 : m /= 0) : \Set
+  | nat-mod Nat
+  | nat-mod= {a b : Nat} (a Nat.mod m = b Nat.mod m) : nat-mod a = nat-mod b
+
+\func nat-mod_+ {m : Nat} {m/=0 : m /= 0} (r : NatModulo m m/=0) (s : NatModulo m m/=0) : NatModulo m m/=0 => {?}
