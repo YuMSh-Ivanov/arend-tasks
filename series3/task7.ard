@@ -1,0 +1,7 @@
+\import Set
+
+\import series3.choices
+
+\type ExcludedMiddle => \Pi (P : \Prop) -> Dec P
+
+\func representative_boolean_partition_imp_excluded_middle : [E]RepresentativeFunctionalChoice -> ExcludedMiddle => {?}

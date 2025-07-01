@@ -1,0 +1,3 @@
+\import series3.choices
+
+\lemma non_dep_dep_functional_choice : [B]FunctionalChoice -> [A]DependentFunctionalChoice => {?}
