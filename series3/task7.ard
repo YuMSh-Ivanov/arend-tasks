@@ -1,0 +1,11 @@
+\import Data.Bool
+\import Logic
+\import Paths
+\import Relation.Equivalence
+\import Set
+
+\import series3.choices
+
+\func ExcludedMiddle : \Prop => \Pi (P : \Prop) -> Dec P
+
+\lemma representative_boolean_partition_imp_excluded_middle : [E]RepresentativeFunctionalChoice -> ExcludedMiddle => {?}

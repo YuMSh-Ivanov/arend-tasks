@@ -1,0 +1,9 @@
+\import Logic
+
+\import series3.choices
+
+\lemma dep_non_dep_functional_choice : [A]DependentFunctionalChoice -> [B]FunctionalChoice => {?}
+
+\lemma dep_functional_choice_to_inhabited_forall_commute : [A]DependentFunctionalChoice -> [C]InhabitedForallCommute => {?}
+
+\lemma inhabited_forall_commute_to_functional_choice : [C]InhabitedForallCommute -> [B]FunctionalChoice => {?}

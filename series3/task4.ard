@@ -1,0 +1,9 @@
+\import Logic
+\import Logic.Meta
+\import Paths
+\import Paths.Meta
+\import Relation.Equivalence
+
+\import series3.choices
+
+\lemma fun_choice_imp_repr_fun_choice : [B]FunctionalChoice -> [E]RepresentativeFunctionalChoice => {?}

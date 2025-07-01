@@ -1,0 +1,35 @@
+\import Data.Bool
+\import Data.Or
+\import Equiv
+\import Equiv.Univalence
+\import Function
+\import HLevel
+\import Logic
+\import Paths
+\import Paths.Meta
+
+\func [Bool=Bool]=Bool : (Bool = Bool) = Bool =>
+  [Bool=Bool]=Equiv *> Equiv=Bool
+  \where {
+    \func [Bool=Bool]=Equiv : (Bool = Bool) = Equiv {Bool} {Bool} => {?}
+
+    \func Equiv=Bool : Equiv {Bool} {Bool} = Bool => {?}
+  }
+
+\func InhabitedForallCommuteForType : \Prop =>
+  \Pi (A : \Type)
+      (B : A -> \Set) ->
+      (\Pi (x : A) -> TruncP (B x)) ->
+      TruncP (\Pi (x : A) -> B x)
+
+\func A : \1-Type => \Sigma (X : \Set) (TruncP (Bool = X))
+
+\func a0 : A => (Bool, inP idp)
+
+\func [a0=a0]=[Bool=Bool] : (a0 = a0) = (Bool = Bool) => {?}
+
+\lemma A-is-not-set : Not (isSet A) => {?}
+
+\func B (a : A) : \Set => a0 = a
+
+\lemma inhabited_forall_commute_for_type_imp_contradiction : InhabitedForallCommuteForType -> Empty => {?}

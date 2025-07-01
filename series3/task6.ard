@@ -1,0 +1,9 @@
+\import Logic
+\import Paths
+\import Relation.Equivalence
+
+\import series3.choices
+
+\lemma setoid_fun_choice_imp_repr_fun_choice : [F]SetoidFunctionalChoice -> [E]RepresentativeFunctionalChoice => {?}
+
+\lemma setoid_fun_choice_imp_fun_choice : [F]SetoidFunctionalChoice -> [B]FunctionalChoice => {?}

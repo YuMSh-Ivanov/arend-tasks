@@ -1,0 +1,14 @@
+\import Equiv
+\import Function
+\import Logic
+
+\import series3.choices
+
+\func surj->retract : \Prop =>
+  \Pi (A : \Set)
+      (B : \Set)
+      (f : A -> B) ->
+      isSurj f ->
+      TruncP (Retraction f)
+
+\lemma inhabited_forall_commute_imp_surj->retract : [C]InhabitedForallCommute -> surj->retract => {?}

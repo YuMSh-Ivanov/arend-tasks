@@ -1,0 +1,22 @@
+\import Logic
+\import Logic.Meta
+\import Paths
+\import Paths.Meta
+
+\import series3.choices
+
+\type Exists! \alias ∃! (A : \Set) (B : A -> \Prop) =>
+  \Sigma (a : A) (B a) (\Pi (a' : A) -> B a' -> a = a')
+  \where {
+    \use \level levelProp {A : \Set} {B : A -> \Prop} (e1 e2 : ∃! A B) : e1 = e2 => {?}
+  }
+
+\func [D]RelationalChoice : \Prop =>
+  \Pi (A : \Set) (B : \Set)
+      (R : A -> B -> \Prop) ->
+      (\Pi (x : A) -> ∃ (y : B) (R x y)) ->
+      ∃ (R' : A -> B -> \Prop) (\Pi (x : A) {y : B} -> R' x y -> R x y) (\Pi (x : A) -> ∃! B (R' x))
+
+\lemma rel_choice_imp_fun_choice : [D]RelationalChoice -> [B]FunctionalChoice => {?}
+
+\lemma fun_choice_imp_rel_choice : [B]FunctionalChoice -> [D]RelationalChoice => {?}

@@ -1,0 +1,37 @@
+\import Logic
+\import Logic.Meta
+\import Relation.Equivalence
+
+\func [A]DependentFunctionalChoice : \Prop =>
+  \Pi (A : \Set)
+      (B : A -> \Set)
+      (R : \Pi (x : A) -> B x -> \Prop) ->
+      (\Pi (x : A) -> ∃ (y : B x) (R x y)) ->
+      ∃ (f : \Pi (x : A) -> B x) (\Pi (x : A) -> R x (f x))
+
+\func [B]FunctionalChoice : \Prop =>
+  \Pi (A : \Set)
+      (B : \Set)
+      (R : A -> B -> \Prop) ->
+      (\Pi (x : A) -> ∃ (y : B) (R x y)) ->
+      ∃ (f : A -> B) (\Pi (x : A) -> R x (f x))
+
+\func [C]InhabitedForallCommute : \Prop =>
+  \Pi (A : \Set)
+      (B : A -> \Set) ->
+      (\Pi (x : A) -> TruncP (B x)) ->
+      TruncP (\Pi (x : A) -> B x)
+
+\func [E]RepresentativeFunctionalChoice =>
+  \Pi (A : \Set)
+      (R : Equivalence A) ->
+      ∃ (f : A -> A) (\Pi (x : A) -> \Sigma (R.~ x (f x)) (\Pi (x' : A) -> R.~ x x' -> f x = f x'))
+
+\func [F]SetoidFunctionalChoice : \Prop =>
+  \Pi (A : \Set)
+      (B : \Set)
+      (R : Equivalence A)
+      (T : A -> B -> \Prop) ->
+      (\Pi (x : A) (x' : A) (y : B) -> R.~ x x' -> T x y -> T x' y) ->
+      (\Pi (x : A) -> ∃ (y : B) (T x y)) ->
+      ∃ (f : A -> B) (\Pi (x : A) -> \Sigma (T x (f x)) (\Pi (x' : A) -> R.~ x x' -> f x = f x'))
