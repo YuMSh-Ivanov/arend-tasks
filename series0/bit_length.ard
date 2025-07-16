@@ -1,0 +1,33 @@
+\import Arith.Fin
+\import Arith.Nat
+\import Logic
+\import Logic.Meta
+\import Paths
+
+-- используем вспомогательную функцию (см. ниже), где количество итераций точно не больше аргумента
+\func bit-length (x : Nat) : Nat => helper x x NatSemiring.<=-refl
+  \where {
+    -- лемма, которая утверждает, что suc x / 2 < suc x
+    \lemma suc/2<suc {x : Nat} : suc x Nat.div 2 NatSemiring.< suc x \elim x
+      | 0 => NatSemiring.zero<suc
+      | 1 => NatSemiring.suc<suc NatSemiring.zero<suc
+      | suc (suc x') => transportInv
+          (NatSemiring.`< suc (suc (suc x')))
+          (div_suc-lem (contradiction : 2 /= 0))
+          (NatSemiring.suc<suc (suc/2<suc NatSemiring.<∘ id<suc))
+
+    -- Принимает аргумент, количество итераций и доказательство, что количество итераций больше либо равно аргументу
+    \func helper (x : Nat) (it : Nat) (\property x<=it : x NatSemiring.<= it) : Nat \elim x, it
+      -- если x = 0, вернуть 0
+      | 0, _ => 0
+      -- если итерации кончились, а x > 0, противоречие (absurd - это правило вывода чего угодно из лжи)
+      | suc x', 0 => absurd (x<=it NatSemiring.zero<suc)
+      -- в противном случае...
+      | suc x', suc it' =>
+        \have | x'<=it' : x' NatSemiring.<= it' => \lam it'<x' => x<=it (NatSemiring.suc<suc it'<x')
+              -- сначала докажем, что x / 2 <= it - 1
+              | x/2<=it' : suc x' Nat.div 2 NatSemiring.<= it' =>
+                <_suc_<= suc/2<suc NatSemiring.<=∘ x'<=it'
+              -- сделаем рекурсивный вызов с итерациями на 1 меньше и выведенным доказательством
+        \in suc (helper (suc x' Nat.div 2) it' x/2<=it')
+  }
